@@ -27,7 +27,10 @@ def getPosts():
 
 @app.get("/posts/{id}")
 def getPostById(id: str):
-    print(id)
+    for post in posts:
+        if post["id"] == id:
+            return post
+    return "not found"
 
 @app.post("/posts")
 def create(post: Post):
