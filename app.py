@@ -25,7 +25,12 @@ def read_root():
 def getPosts():
     return posts
 
+@app.get("/posts/{id}")
+def getPostById(id: str):
+    print(id)
+
 @app.post("/posts")
 def create(post: Post):
     post.id = str(uuid())
     posts.append(post.dict())
+    return posts[-1]
