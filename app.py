@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Text, Optional
 from datetime import datetime
@@ -30,7 +30,7 @@ def getPostById(id: str):
     for post in posts:
         if post["id"] == id:
             return post
-    return "not found"
+    raise HTTPException(status_code=404, detail="Post not found")
 
 @app.post("/posts")
 def create(post: Post):
