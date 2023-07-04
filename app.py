@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Text, Optional
 from datetime import datetime
+from uuid import uuid4 as uuid
 
 app = FastAPI()
 posts = []
@@ -26,4 +27,5 @@ def getPosts():
 
 @app.post("/posts")
 def create(post: Post):
+    post.id = str(uuid())
     posts.append(post.dict())
