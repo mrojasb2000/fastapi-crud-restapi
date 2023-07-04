@@ -25,5 +25,5 @@ def getPosts():
     return posts
 
 @app.post("/posts")
-def create(post):
-    print(post)
+def create(post: Post):
+    posts.append(post.dict())
